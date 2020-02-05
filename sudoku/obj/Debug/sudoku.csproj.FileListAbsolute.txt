@@ -9,3 +9,14 @@ C:\Users\ami-janesmart\source\repos\sudoku\obj\Debug\sudoku.csproj.GenerateResou
 C:\Users\ami-janesmart\source\repos\sudoku\obj\Debug\sudoku.csproj.CoreCompileInputs.cache
 C:\Users\ami-janesmart\source\repos\sudoku\obj\Debug\sudoku.exe
 C:\Users\ami-janesmart\source\repos\sudoku\obj\Debug\sudoku.pdb
+U:\AC22005\Game\sudoku\sudoku\bin\Debug\sudoku.exe.config
+U:\AC22005\Game\sudoku\sudoku\bin\Debug\sudoku.exe
+U:\AC22005\Game\sudoku\sudoku\bin\Debug\sudoku.pdb
+U:\AC22005\Game\sudoku\sudoku\obj\Debug\sudoku.csprojAssemblyReference.cache
+U:\AC22005\Game\sudoku\sudoku\obj\Debug\sudoku.frmgame.resources
+U:\AC22005\Game\sudoku\sudoku\obj\Debug\sudoku.menu.resources
+U:\AC22005\Game\sudoku\sudoku\obj\Debug\sudoku.Properties.Resources.resources
+U:\AC22005\Game\sudoku\sudoku\obj\Debug\sudoku.csproj.GenerateResource.cache
+U:\AC22005\Game\sudoku\sudoku\obj\Debug\sudoku.csproj.CoreCompileInputs.cache
+U:\AC22005\Game\sudoku\sudoku\obj\Debug\sudoku.exe
+U:\AC22005\Game\sudoku\sudoku\obj\Debug\sudoku.pdb

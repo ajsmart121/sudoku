@@ -47,6 +47,26 @@ namespace sudoku
             Console.WriteLine(((Button)sender).Text);    // SAME handler as before
         }
 
+
+        // Find out how many times a value appears in the grid
+        // Parameters:
+        //      value - The value that is being searched for
+        int CheckValue(int value)
+        {
+            int count = 0;
+            for (int i = 0; i < grid.GetLength(0); i++)
+            {
+                for(int j = 0; j < grid.GetLength(1); j++)
+                {
+                    if (grid[i, j] == value)
+                    {
+                        count++;
+                    }
+                }
+            }
+            return count;
+        }
+
         private void Frmgame_Load(object sender, EventArgs e)
         {
 
