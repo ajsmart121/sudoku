@@ -15,6 +15,7 @@ namespace sudoku
 
         public int[,] grid = new int[9, 9];
         public Button[,] btns = new Button[9, 9];
+        public Button[] numbers = new Button[9];
 
 
         public frmgame()
@@ -33,14 +34,55 @@ namespace sudoku
 
                 }
             }
+
+            for (int i = 0; i< numbers.Length; i++)
+            {
+                numbers[i] = new Button();
+                numbers[i].SetBounds(55 * i, 500, 45, 45);
+                numbers[i].BackColor = Color.CornflowerBlue;
+                numbers[i].Text = Convert.ToString(i + 1);
+                numbers[i].Click += new EventHandler(this.numbersEvent_Click);
+                Controls.Add(numbers[i]);
+            }
         }
 
-        public void checkUp()
+        private void numbersEvent_Click(object sender, EventArgs e)
         {
+            throw new NotImplementedException();
+        }
+
+        //whenevr a number is pressed then check around (square, up, side) and see if its valid
+
+        public void checkValid()
+        {
+            bool valid = false;
+
+            valid = checkUp();
+
+            valid = false;
+
+            valid = checkSide();
+
+            valid = false;
+
+            valid = checkSquare();
 
         }
 
+        public bool checkUp()
+        {
+            return true;
+        }
 
+        public bool checkSide()
+        {
+            return true;
+        }
+
+        public bool checkSquare()
+        {
+            return true;
+        }
 
         void btnsEvent_Click(object sender, EventArgs e)
         {
