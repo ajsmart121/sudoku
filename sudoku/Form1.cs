@@ -55,6 +55,9 @@ namespace sudoku
 
         public void checkValid()
         {
+            //check if full then check sides and square
+            //take in position of the chosen square and its value
+
             bool valid = false;
 
             valid = checkUp();
@@ -65,22 +68,51 @@ namespace sudoku
 
             valid = false;
 
+            //calculate which square the selected thingy is in
+
             valid = checkSquare();
 
         }
 
-        public bool checkUp()
+        //take in the value selected and the x coord and check the entire row vertically, if it exists already then make red and hidden value = 11
+        public bool checkUp(int x, int value)
         {
+            for (int i = 0; i < 9; i++)
+            {
+                if (grid[x,i] == value)
+                {
+                    return false;
+                }
+            }
             return true;
         }
 
-        public bool checkSide()
+        //take in the value selected, and the y coord and check the entire row horizontally, if it exists already then make red and hidden value = 11
+        public bool checkSide(int y, int value)
         {
+            for (int i = 0; i < 9; i++)
+            {
+                if (grid[i, y] == value)
+                {
+                    return false;
+                }
+            }
             return true;
         }
 
-        public bool checkSquare()
+        //
+        public bool checkSquare(int n, int m, int value)
         {
+            for (int x = 0; x < 3; x++)
+            {
+                for (int y = 0; y < 3; y++)
+                {
+                    if(grid[(n/3)*3  + x, (m/3)* 3 + y] == value)
+                    {
+                        return false;
+                    }
+                }
+            }
             return true;
         }
 
