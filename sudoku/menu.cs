@@ -12,6 +12,8 @@ namespace sudoku
 {
     public partial class menu : Form
     {
+        frmgame game;
+
         public menu()
         {
             InitializeComponent();
@@ -24,20 +26,27 @@ namespace sudoku
 
         private void easyBtn_Click(object sender, EventArgs e)
         {
-            frmgame game = new frmgame(38);
-            game.Show();
+            game = new frmgame(38);
+            OnStartGame();
         }
 
         private void RegBtn_Click(object sender, EventArgs e)
         {
-            frmgame game = new frmgame(30);
-            game.Show();
+            game = new frmgame(30);
+            OnStartGame();
         }
 
         private void HardBtn_Click(object sender, EventArgs e)
         {
-            frmgame game = new frmgame(22);
+            game = new frmgame(22);
+            OnStartGame();
+        }
+
+        private void OnStartGame()
+        {
             game.Show();
+            game.SetMenu(this);
+            this.Hide();
         }
 
         private void LeadBtn_Click(object sender, EventArgs e)

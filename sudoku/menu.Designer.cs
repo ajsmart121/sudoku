@@ -38,7 +38,7 @@
             // 
             // easyBtn
             // 
-            this.easyBtn.Location = new System.Drawing.Point(125, 100);
+            this.easyBtn.Location = new System.Drawing.Point(125, 121);
             this.easyBtn.Name = "easyBtn";
             this.easyBtn.Size = new System.Drawing.Size(75, 23);
             this.easyBtn.TabIndex = 0;
@@ -48,7 +48,7 @@
             // 
             // regBtn
             // 
-            this.regBtn.Location = new System.Drawing.Point(125, 129);
+            this.regBtn.Location = new System.Drawing.Point(125, 150);
             this.regBtn.Name = "regBtn";
             this.regBtn.Size = new System.Drawing.Size(75, 23);
             this.regBtn.TabIndex = 1;
@@ -58,7 +58,7 @@
             // 
             // hardBtn
             // 
-            this.hardBtn.Location = new System.Drawing.Point(125, 158);
+            this.hardBtn.Location = new System.Drawing.Point(125, 179);
             this.hardBtn.Name = "hardBtn";
             this.hardBtn.Size = new System.Drawing.Size(75, 23);
             this.hardBtn.TabIndex = 2;
@@ -68,7 +68,7 @@
             // 
             // leadBtn
             // 
-            this.leadBtn.Location = new System.Drawing.Point(125, 217);
+            this.leadBtn.Location = new System.Drawing.Point(125, 238);
             this.leadBtn.Name = "leadBtn";
             this.leadBtn.Size = new System.Drawing.Size(75, 23);
             this.leadBtn.TabIndex = 3;
@@ -78,7 +78,7 @@
             // 
             // exitBtn
             // 
-            this.exitBtn.Location = new System.Drawing.Point(125, 247);
+            this.exitBtn.Location = new System.Drawing.Point(125, 268);
             this.exitBtn.Name = "exitBtn";
             this.exitBtn.Size = new System.Drawing.Size(75, 23);
             this.exitBtn.TabIndex = 4;
@@ -100,13 +100,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(334, 361);
+            this.ClientSize = new System.Drawing.Size(330, 357);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.exitBtn);
             this.Controls.Add(this.leadBtn);
             this.Controls.Add(this.hardBtn);
             this.Controls.Add(this.regBtn);
             this.Controls.Add(this.easyBtn);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "menu";
             this.Text = "Menu";
             this.Load += new System.EventHandler(this.Menu_Load);
