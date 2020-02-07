@@ -15,18 +15,19 @@ namespace sudoku
 
         public int[,] grid = new int[9, 9];
         public Button[,] btns = new Button[9, 9];
+        menu mnu;
 
 
-        public frmgame()
+        public frmgame(int Difficulty)
         {
             InitializeComponent();
-            FillGrid(GenerateSolution(), 30);                   // Create the grid with roughly 30 numbers
+            FillGrid(GenerateSolution(), Difficulty);                   // Create the grid with roughly 30 numbers
             for (int x = 0; x < btns.GetLength(0); x++)         // Loop for x
             {
                 for (int y = 0; y < btns.GetLength(1); y++)     // Loop for y
                 {
                     btns[x, y] = new Button();
-                    btns[x, y].SetBounds(55 * x, 55 * y, 45, 45);
+                    btns[x, y].SetBounds((55 * x)+20, (55 * y)+40, 45, 45);
                     btns[x, y].BackColor = Color.PowderBlue;
                     if(grid[x,y] != 0)          // If the grid location isn't empty
                     {
@@ -183,6 +184,11 @@ namespace sudoku
             }
         }
 
+        public void SetMenu(menu menu1)
+        {
+            mnu = menu1;
+        }
+
 
         //take in the value selected, and the y coord and check the entire row horizontally, if it exists already then make red and hidden value = 11
         public bool checkSide(int y, int value)
@@ -200,6 +206,12 @@ namespace sudoku
         private void Frmgame_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void MenuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mnu.Show();
+            this.Close();
         }
     }
 }
