@@ -21,7 +21,7 @@ namespace sudoku
 
         private void Menu_Load(object sender, EventArgs e)
         {
-            
+            this.CenterToScreen();
         }
 
         private void easyBtn_Click(object sender, EventArgs e)
