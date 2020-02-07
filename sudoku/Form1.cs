@@ -17,10 +17,10 @@ namespace sudoku
         public Button[,] btns = new Button[9, 9];
 
 
-        public frmgame()
+        public frmgame(int Difficulty)
         {
             InitializeComponent();
-            FillGrid(GenerateSolution(), 30);                   // Create the grid with roughly 30 numbers
+            FillGrid(GenerateSolution(), Difficulty);                   // Create the grid with roughly 30 numbers
             for (int x = 0; x < btns.GetLength(0); x++)         // Loop for x
             {
                 for (int y = 0; y < btns.GetLength(1); y++)     // Loop for y
