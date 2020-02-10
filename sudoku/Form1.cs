@@ -16,7 +16,8 @@ namespace sudoku
         public int[,] grid = new int[9, 9];
         public Button[,] btns = new Button[9, 9];
         menu mnu;
-
+        bool closing = false;
+        
 
         public frmgame(int Difficulty)
         {
@@ -205,13 +206,29 @@ namespace sudoku
 
         private void Frmgame_Load(object sender, EventArgs e)
         {
+            this.Closing += Window_Closing;
             this.CenterToScreen();
         }
 
         private void MenuToolStripMenuItem_Click(object sender, EventArgs e)
         {
             mnu.Show();
+            closing = true;
             this.Close();
+        }
+
+        private void HelpToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            MessageBox.Show("Rules: \n 1. Each row must contain all numbers from 1 to 9 \n 2. Each column must contain all numbers from 1 to 9 \n 3. Each box must contain all numbers from 1 to 9\n\nHow to play: \n 1. Select a grid tile\n 2. Select a value to place it within the grid", "Help");
+        }
+
+        // Occurs when the form closes
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (!closing)   // If the form isn't closing to go to the menu
+            {
+                Application.Exit();     // Close the program
+            }
         }
     }
 }
