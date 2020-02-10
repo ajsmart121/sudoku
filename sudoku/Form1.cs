@@ -23,6 +23,7 @@ namespace sudoku
         {
             InitializeComponent();
             FillGrid(GenerateSolution(), Difficulty);                   // Create the grid with roughly 30 numbers
+            SwapColumns();
             for (int x = 0; x < btns.GetLength(0); x++)         // Loop for x
             {
                 for (int y = 0; y < btns.GetLength(1); y++)     // Loop for y
@@ -138,6 +139,22 @@ namespace sudoku
                 nextRow = 3 - nextRow - desRow;     // Change the nextRow to the only row section that hasn't been used
             }
             return tmpGrid;
+        }
+
+        // Method to swap around the first grid column with the second
+        void SwapColumns()
+        {
+            int temp = 0;
+            for(int j = 0; j < 3; j++)
+            {
+                for (int i = 0; i < 9; i++)
+                {
+                    temp = grid[3+j, i];
+                    grid[3+j, i] = grid[0+j, i];
+                    grid[0+j, i] = temp;
+                }
+            }
+
         }
 
         // Method to fill in the grid
