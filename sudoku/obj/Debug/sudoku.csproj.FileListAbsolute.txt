@@ -20,3 +20,15 @@ C:\Users\ami-janesmart\Downloads\sudoku-aj-edits\sudoku-aj-edits\sudoku\obj\Debu
 C:\Users\ami-janesmart\Downloads\sudoku-aj-edits\sudoku-aj-edits\sudoku\obj\Debug\sudoku.csproj.CoreCompileInputs.cache
 C:\Users\ami-janesmart\Downloads\sudoku-aj-edits\sudoku-aj-edits\sudoku\obj\Debug\sudoku.exe
 C:\Users\ami-janesmart\Downloads\sudoku-aj-edits\sudoku-aj-edits\sudoku\obj\Debug\sudoku.pdb
+U:\Documents\c#\sudoku\sudoku\bin\Debug\sudoku.exe.config
+U:\Documents\c#\sudoku\sudoku\bin\Debug\sudoku.exe
+U:\Documents\c#\sudoku\sudoku\bin\Debug\sudoku.pdb
+U:\Documents\c#\sudoku\sudoku\obj\Debug\sudoku.csprojAssemblyReference.cache
+U:\Documents\c#\sudoku\sudoku\obj\Debug\sudoku.frmgame.resources
+U:\Documents\c#\sudoku\sudoku\obj\Debug\sudoku.menu.resources
+U:\Documents\c#\sudoku\sudoku\obj\Debug\sudoku.Properties.Resources.resources
+U:\Documents\c#\sudoku\sudoku\obj\Debug\sudoku.csproj.GenerateResource.cache
+U:\Documents\c#\sudoku\sudoku\obj\Debug\sudoku.csproj.CoreCompileInputs.cache
+U:\Documents\c#\sudoku\sudoku\obj\Debug\sudoku.exe
+U:\Documents\c#\sudoku\sudoku\obj\Debug\sudoku.pdb
+U:\Documents\c#\sudoku\sudoku\obj\Debug\sudoku.scores.resources

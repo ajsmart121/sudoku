@@ -21,10 +21,55 @@ namespace sudoku
             //sort the file into highest to lowest
             //display the sorted thingy with the 1'st, 2nd and 3rd in labels, the rest in text boxes
             //overwrite the already existing file with the new sorted list
+
+            displayLeaderboard();
         }
 
         private void Scores_Load(object sender, EventArgs e)
         {
+            
+        }
+
+        public void displayLeaderboard()
+        {
+            int[,] scores = new int[2, 10];
+            string[] fileInfo = new string[11];
+            string filePath = Path.GetFullPath("scores.txt");
+            //FileInfo filePath = new FileInfo (@"U:\Documents\c#\sudoku\sudoku\bin\Debug\scores.txt");
+            Console.WriteLine(filePath);
+
+            //load the file (scores.txt)
+            if (File.Exists(filePath))
+            {
+                Console.WriteLine("file exists owo");
+                 StreamReader s = File.OpenText(filePath);
+                 string read = null;
+
+                 int counter = 0;
+
+                 while ((read = s.ReadLine()) != null)
+                 {
+                    Console.WriteLine(read);
+                    fileInfo[counter] = read;
+                    counter++;
+                 }
+                 s.Close();
+            }
+            else {
+                listBox1.Items.Add("file didnt exist uwu");
+            }
+            
+            
+            //go through fileInfo and separate into names and scores and put into 2D array "scores"
+            //remember to ToInt() the score
+
+            
+            //sort the scores
+
+            //replace the scores.txt file with the new sorted file
+
+
+            //display the file
 
         }
     }
