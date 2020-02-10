@@ -16,12 +16,14 @@ namespace sudoku
         public int[,] grid = new int[9, 9];
         public Button[,] btns = new Button[9, 9];
         menu mnu;
-
+        bool closing = false;
+        
 
         public frmgame(int Difficulty)
         {
             InitializeComponent();
             FillGrid(GenerateSolution(), Difficulty);                   // Create the grid with roughly 30 numbers
+            SwapColumns();
             for (int x = 0; x < btns.GetLength(0); x++)         // Loop for x
             {
                 for (int y = 0; y < btns.GetLength(1); y++)     // Loop for y
@@ -139,6 +141,22 @@ namespace sudoku
             return tmpGrid;
         }
 
+        // Method to swap around the first grid column with the second
+        void SwapColumns()
+        {
+            int temp = 0;
+            for(int j = 0; j < 3; j++)
+            {
+                for (int i = 0; i < 9; i++)
+                {
+                    temp = grid[3+j, i];
+                    grid[3+j, i] = grid[0+j, i];
+                    grid[0+j, i] = temp;
+                }
+            }
+
+        }
+
         // Method to fill in the grid
         // Parameters:
         //      sol - a 2D array with a complete solution
@@ -205,13 +223,29 @@ namespace sudoku
 
         private void Frmgame_Load(object sender, EventArgs e)
         {
-
+            this.Closing += Window_Closing;
+            this.CenterToScreen();
         }
 
         private void MenuToolStripMenuItem_Click(object sender, EventArgs e)
         {
             mnu.Show();
+            closing = true;
             this.Close();
+        }
+
+        private void HelpToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            MessageBox.Show("Rules: \n 1. Each row must contain all numbers from 1 to 9 \n 2. Each column must contain all numbers from 1 to 9 \n 3. Each box must contain all numbers from 1 to 9\n\nHow to play: \n 1. Select a grid tile\n 2. Select a value to place it within the grid", "Help");
+        }
+
+        // Occurs when the form closes
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (!closing)   // If the form isn't closing to go to the menu
+            {
+                Application.Exit();     // Close the program
+            }
         }
     }
 }
