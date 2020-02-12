@@ -26,7 +26,7 @@ namespace sudoku
 
         private void easyBtn_Click(object sender, EventArgs e)
         {
-            game = new frmgame(38);
+            game = new frmgame(81);
             OnStartGame();
         }
 
