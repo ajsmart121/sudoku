@@ -23,7 +23,7 @@ namespace sudoku
         {
             InitializeComponent();
             FillGrid(GenerateSolution(), Difficulty);                   // Create the grid with roughly 30 numbers
-            SwapColumns();
+            GridSwapper();
             for (int x = 0; x < btns.GetLength(0); x++)         // Loop for x
             {
                 for (int y = 0; y < btns.GetLength(1); y++)     // Loop for y
@@ -141,8 +141,8 @@ namespace sudoku
             return tmpGrid;
         }
 
-        // Method to swap around the first grid column with the second
-        void SwapColumns()
+        // Method to randomly swap columns and rows
+        void GridSwapper()
         {
             int temp = 0;
             for(int j = 0; j < 3; j++)
@@ -153,6 +153,49 @@ namespace sudoku
                     grid[3+j, i] = grid[0+j, i];
                     grid[0+j, i] = temp;
                 }
+            }
+
+            Random rand = new Random();
+            for(int i = 0; i <3; i++)
+            {
+                for(int k = 0; k < 2; k++)
+                {
+                    int col = rand.Next(0, 3) + (3 * i);
+                    int col2;
+                    do
+                    {
+                        col2 = rand.Next(0, 3) + (3 * i);
+                    } while (col2 == col);
+
+                    for (int j = 0; j < 9; j++)
+                    {
+                        temp = grid[col, j];
+                        grid[col, j] = grid[col2, j];
+                        grid[col2, j] = temp;
+                    }
+                }
+
+            }
+
+            for (int i = 0; i < 3; i++)
+            {
+                for (int k = 0; k < 2; k++)
+                {
+                    int row = rand.Next(0, 3) + (3 * i);
+                    int row2;
+                    do
+                    {
+                        row2 = rand.Next(0, 3) + (3 * i);
+                    } while (row2 == row);
+
+                    for (int j = 0; j < 9; j++)
+                    {
+                        temp = grid[j, row];
+                        grid[j, row] = grid[j, row2];
+                        grid[j, row2] = temp;
+                    }
+                }
+
             }
 
         }
