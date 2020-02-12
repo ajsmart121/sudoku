@@ -15,18 +15,21 @@ namespace sudoku
 
         public int[,] grid = new int[9, 9];
         public Button[,] btns = new Button[9, 9];
+        menu mnu;
+        bool closing = false;
+        
 
-
-        public frmgame()
+        public frmgame(int Difficulty)
         {
             InitializeComponent();
-            FillGrid(GenerateSolution(), 30);                   // Create the grid with roughly 30 numbers
+            FillGrid(GenerateSolution(), Difficulty);                   // Create the grid with roughly 30 numbers
+            SwapColumns();
             for (int x = 0; x < btns.GetLength(0); x++)         // Loop for x
             {
                 for (int y = 0; y < btns.GetLength(1); y++)     // Loop for y
                 {
                     btns[x, y] = new Button();
-                    btns[x, y].SetBounds(55 * x, 55 * y, 45, 45);
+                    btns[x, y].SetBounds((55 * x)+20, (55 * y)+40, 45, 45);
                     btns[x, y].BackColor = Color.PowderBlue;
                     if(grid[x,y] != 0)          // If the grid location isn't empty
                     {
@@ -89,7 +92,7 @@ namespace sudoku
             for (int i = 0; i < 9; i++)         // For each item in a row
             {
                 int val = rand.Next(1, 10);     // Select a random number
-                while (!checkSide(0, val))      // While that number already exists in the row
+                while (!checkRow(0, val))      // While that number already exists in the row
                 {
                     val = rand.Next(1, 10);     // Choose a different number
                 }
@@ -138,6 +141,22 @@ namespace sudoku
             return tmpGrid;
         }
 
+        // Method to swap around the first grid column with the second
+        void SwapColumns()
+        {
+            int temp = 0;
+            for(int j = 0; j < 3; j++)
+            {
+                for (int i = 0; i < 9; i++)
+                {
+                    temp = grid[3+j, i];
+                    grid[3+j, i] = grid[0+j, i];
+                    grid[0+j, i] = temp;
+                }
+            }
+
+        }
+
         // Method to fill in the grid
         // Parameters:
         //      sol - a 2D array with a complete solution
@@ -183,14 +202,35 @@ namespace sudoku
             }
         }
 
+        public void SetMenu(menu menu1)
+        {
+            mnu = menu1;
+        }
+
+        //take in the value selected, and the x coord and check the entire column vertically, if it exists already then make red and hidden value = 11
+        public bool checkColumn(int x, int value)
+        {
+            for (int i = 0; i < 9; i++)
+            {
+                if (grid[x, i] == value)
+                {
+                    btns[x, i].BackColor = Color.Red;
+                    grid[x, i] = 11;
+                    return false;
+                }
+            }
+            return true;
+        }
 
         //take in the value selected, and the y coord and check the entire row horizontally, if it exists already then make red and hidden value = 11
-        public bool checkSide(int y, int value)
+        public bool checkRow(int y, int value)
         {
             for (int i = 0; i < 9; i++)
             {
                 if (grid[i, y] == value)
                 {
+                    btns[i, y].BackColor = Color.Red;
+                    grid[i, y] = 11;
                     return false;
                 }
             }
@@ -199,7 +239,29 @@ namespace sudoku
 
         private void Frmgame_Load(object sender, EventArgs e)
         {
+            this.Closing += Window_Closing;
+            this.CenterToScreen();
+        }
 
+        private void MenuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mnu.Show();
+            closing = true;
+            this.Close();
+        }
+
+        private void HelpToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            MessageBox.Show("Rules: \n 1. Each row must contain all numbers from 1 to 9 \n 2. Each column must contain all numbers from 1 to 9 \n 3. Each 3x3 box must contain all numbers from 1 to 9\n\nHow to play: \n 1. Select a grid tile\n 2. Select a value to place it within the grid", "Help");
+        }
+
+        // Occurs when the form closes
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (!closing)   // If the form isn't closing to go to the menu
+            {
+                Application.Exit();     // Close the program
+            }
         }
     }
 }
