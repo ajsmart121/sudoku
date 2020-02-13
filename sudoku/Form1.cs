@@ -15,13 +15,14 @@ namespace sudoku
 
         public int[,] grid = new int[9, 9];
         public Button[,] btns = new Button[9, 9];
+        public Button[] numbers = new Button[9];
         menu mnu;
         bool closing = false;
-        
 
         public frmgame(int Difficulty)
         {
             InitializeComponent();
+            Pen drawer = new Pen(Color.Navy, 3);
             FillGrid(GenerateSolution(), Difficulty);                   // Create the grid with roughly 30 numbers
             GridSwapper();
             for (int x = 0; x < btns.GetLength(0); x++)         // Loop for x
@@ -43,19 +44,98 @@ namespace sudoku
                     
                     btns[x, y].Click += new EventHandler(this.btnsEvent_Click);
                     Controls.Add(btns[x, y]);
-
-                    
-
                 }
+            }
+
+            for (int i = 0; i< numbers.Length; i++)
+            {
+                numbers[i] = new Button();
+                numbers[i].SetBounds(75 * i, 500, 45, 45);
+                numbers[i].BackColor = Color.CornflowerBlue;
+                numbers[i].Text = Convert.ToString(i + 1);
+                numbers[i].Click += new EventHandler(this.numbersEvent_Click);
+                Controls.Add(numbers[i]);
             }
         }
 
-        public void checkUp()
+        private void numbersEvent_Click(object sender, EventArgs e)
         {
+            throw new NotImplementedException();
+        }
+
+        //whenevr a number is pressed then check around (square, up, side) and see if its valid
+
+        public void checkValid()
+        {
+            //check if full then check sides and square
+            //take in position of the chosen square and its value
+
+            //temp variables until real ones exist
+            int x = 0;
+            int y = 0;
+            int value = 0;
+            //
+
+            bool valid = false;
+            
+            //take in x coord and value 
+            valid = checkUp(x,value);
+
+            valid = false;
+
+            //take in y coord and value
+            valid = checkSide(y,value);
+
+            valid = false;
+
+            //calculates which square the selected thingy is in
+
+            //take in x and y coords and value
+            valid = checkSquare(x,y,value);
 
         }
 
+        //take in the value selected and the x coord and check the entire row vertically, if it exists already then make red and hidden value = 11
+        public bool checkUp(int x, int value)
+        {
+            for (int i = 0; i < 9; i++)
+            {
+                if (grid[x,i] == value)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
 
+        //take in the value selected, and the y coord and check the entire row horizontally, if it exists already then make red and hidden value = 11
+        public bool checkSide(int y, int value)
+        {
+            for (int i = 0; i < 9; i++)
+            {
+                if (grid[i, y] == value)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        //
+        public bool checkSquare(int n, int m, int value)
+        {
+            for (int x = 0; x < 3; x++)
+            {
+                for (int y = 0; y < 3; y++)
+                {
+                    if(grid[(n/3)*3  + x, (m/3)* 3 + y] == value)
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
 
         void btnsEvent_Click(object sender, EventArgs e)
         {
