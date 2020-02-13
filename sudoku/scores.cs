@@ -27,7 +27,7 @@ namespace sudoku
 
         private void Scores_Load(object sender, EventArgs e)
         {
-            
+         //put the photos in the boxes   
         }
 
         public void displayLeaderboard()
@@ -35,7 +35,7 @@ namespace sudoku
             int[,] scores = new int[2, 10];
             string[] fileInfo = new string[11];
             string filePath = Path.GetFullPath("scores.txt");
-            //FileInfo filePath = new FileInfo (@"U:\Documents\c#\sudoku\sudoku\bin\Debug\scores.txt");
+            //FileInfo scoresFile = new FileInfo (filePath);
             Console.WriteLine(filePath);
 
             //load the file (scores.txt)
@@ -50,13 +50,17 @@ namespace sudoku
                  while ((read = s.ReadLine()) != null)
                  {
                     Console.WriteLine(read);
+                    listBox1.Items.Add(read);
                     fileInfo[counter] = read;
                     counter++;
                  }
                  s.Close();
             }
             else {
-                listBox1.Items.Add("file didnt exist uwu");
+                listBox1.Items.Add("Congrats You're The First!");
+                //create the file
+                FileInfo f = new FileInfo(filePath); // Set file name
+                StreamWriter w = f.CreateText();
             }
             
             

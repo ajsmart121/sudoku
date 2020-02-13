@@ -32,3 +32,14 @@ U:\Documents\c#\sudoku\sudoku\obj\Debug\sudoku.csproj.CoreCompileInputs.cache
 U:\Documents\c#\sudoku\sudoku\obj\Debug\sudoku.exe
 U:\Documents\c#\sudoku\sudoku\obj\Debug\sudoku.pdb
 U:\Documents\c#\sudoku\sudoku\obj\Debug\sudoku.scores.resources
+C:\Users\amija\OneDrive\Documents\sudoku\sudoku\bin\Debug\sudoku.exe.config
+C:\Users\amija\OneDrive\Documents\sudoku\sudoku\bin\Debug\sudoku.exe
+C:\Users\amija\OneDrive\Documents\sudoku\sudoku\bin\Debug\sudoku.pdb
+C:\Users\amija\OneDrive\Documents\sudoku\sudoku\obj\Debug\sudoku.csprojAssemblyReference.cache
+C:\Users\amija\OneDrive\Documents\sudoku\sudoku\obj\Debug\sudoku.frmgame.resources
+C:\Users\amija\OneDrive\Documents\sudoku\sudoku\obj\Debug\sudoku.menu.resources
+C:\Users\amija\OneDrive\Documents\sudoku\sudoku\obj\Debug\sudoku.Properties.Resources.resources
+C:\Users\amija\OneDrive\Documents\sudoku\sudoku\obj\Debug\sudoku.scores.resources
+C:\Users\amija\OneDrive\Documents\sudoku\sudoku\obj\Debug\sudoku.csproj.GenerateResource.cache
+C:\Users\amija\OneDrive\Documents\sudoku\sudoku\obj\Debug\sudoku.exe
+C:\Users\amija\OneDrive\Documents\sudoku\sudoku\obj\Debug\sudoku.pdb
