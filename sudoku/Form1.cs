@@ -321,20 +321,6 @@ namespace sudoku
             mnu = menu1;
         }
 
-
-        //take in the value selected, and the y coord and check the entire row horizontally, if it exists already then make red and hidden value = 11
-        public bool checkSide(int y, int value)
-        {
-            for (int i = 0; i < 9; i++)
-            {
-                if (grid[i, y] == value)
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
-
         private void Frmgame_Load(object sender, EventArgs e)
         {
             timer1.Start();
