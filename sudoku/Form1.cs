@@ -18,6 +18,10 @@ namespace sudoku
         public Button[] numbers = new Button[9];
         menu mnu;
         bool closing = false;
+        public int passedtime = 0;
+
+        //create a win condition ?? also let the game work somehow ??
+        //when the game is won then ask the user for their name and save their name and time (in seconds) to the scores file.
 
         public frmgame(int Difficulty)
         {
@@ -50,7 +54,7 @@ namespace sudoku
             for (int i = 0; i< numbers.Length; i++)
             {
                 numbers[i] = new Button();
-                numbers[i].SetBounds(75 * i, 500, 45, 45);
+                numbers[i].SetBounds((55 * i) + 20, 530 + 40, 45, 45);
                 numbers[i].BackColor = Color.CornflowerBlue;
                 numbers[i].Text = Convert.ToString(i + 1);
                 numbers[i].Click += new EventHandler(this.numbersEvent_Click);
@@ -101,19 +105,6 @@ namespace sudoku
             for (int i = 0; i < 9; i++)
             {
                 if (grid[x,i] == value)
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
-
-        //take in the value selected, and the y coord and check the entire row horizontally, if it exists already then make red and hidden value = 11
-        public bool checkSide(int y, int value)
-        {
-            for (int i = 0; i < 9; i++)
-            {
-                if (grid[i, y] == value)
                 {
                     return false;
                 }
@@ -346,6 +337,7 @@ namespace sudoku
 
         private void Frmgame_Load(object sender, EventArgs e)
         {
+            timer1.Start();
             this.Closing += Window_Closing;
             this.CenterToScreen();
         }
@@ -369,6 +361,13 @@ namespace sudoku
             {
                 Application.Exit();     // Close the program
             }
+        }
+
+        
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            passedtime++;
+            timerlabel.Text = passedtime.ToString();
         }
     }
 }
