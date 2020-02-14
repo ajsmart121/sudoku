@@ -36,11 +36,11 @@ namespace sudoku
 
         public void displayLeaderboard()
         {
-            int[] scores = new int[10];
-            string[] scoreNames = new string[10];
- 
+            List<int> scores = new List<int>();
+            List<string> scoreNames = new List<string>();
 
-            string[] fileInfo = new string[11];
+
+            string[] fileInfo = new string[50];
             string filePath = Path.GetFullPath("scores.txt");
             //FileInfo scoresFile = new FileInfo (filePath);
             Console.WriteLine(filePath);
@@ -49,96 +49,103 @@ namespace sudoku
             if (File.Exists(filePath))
             {
                 Console.WriteLine("file exists owo");
-                 StreamReader s = File.OpenText(filePath);
-                 string read = null;
+                StreamReader s = File.OpenText(filePath);
+                string read = null;
 
-                 int counter = 0;
+                int counter = 0;
 
-                 while ((read = s.ReadLine()) != null)
-                 {
+                while ((read = s.ReadLine()) != null)
+                {
                     Console.WriteLine(read);
-                    listBox1.Items.Add(read);
-                    /*
-                     * scores = ToInt(read); 
-                     * 
-                     * scoresName = read;
-                     *
-                     */
-                    fileInfo[counter] = read;
+                    //listBox1.Items.Add(read);
+
+
+                    if (counter % 2 == 0)
+                    {
+                        scores.Add(System.Convert.ToInt32(read));
+
+                    }
+                    else
+                    {
+                        scoreNames.Add(read);
+                    }
+
+                    //fileInfo[counter] = read;
                     counter++;
-                 }
-                 s.Close();
+                }
+                s.Close();
             }
             else {
                 listBox1.Items.Add("Congrats You're The First!");
                 //create the file
-                FileInfo fi = new FileInfo(filePath); // Set file name
-                StreamWriter wr = fi.CreateText();
+               // FileInfo fi = new FileInfo(filePath); // Set file name
+                //StreamWriter wr = fi.CreateText();
             }
-
+            Console.WriteLine("Sort");
 
             //go through fileInfo and separate into names and scores and put into array "scores" and "scoreNames"
 
 
             //sort the scores
-            bool sorted = false;
-            int i = 0;
-            int scorescounter = 0;
+            
+            for (int i = 0; i < scores.Count; i++) { 
+                for (int j = 0; j < scores.Count - i - 1; j++) { 
+                    if (scores[j] > scores[j + 1])
+                    {
+                        string tempString = scoreNames[j];
+                        int tempInt = scores[j];
 
-            while (sorted == false)
-            {
-                if (scores[i] < scores[i + 1])
-                {
-                    scorescounter = 0;
-                    string tempString = scoreNames[i];
-                    int tempInt = scores[i];
+                        scores[j] = scores[j + 1];
+                        scoreNames[j] = scoreNames[j + 1];
 
-                    scores[i] = scores[i + 1];
-                    scoreNames[i] = scoreNames[i+1];
-
-                    scores[i + 1] = tempInt;
-                    scoreNames[i + 1] = tempString;
-
+                        scores[j + 1] = tempInt;
+                        scoreNames[j + 1] = tempString;
+                    }
                 }
-                else
-                {
-                    scorescounter++;
-                }
-
-                if (scorescounter >= scores.Length)
-                {
-                    sorted = true;
-                }
-
             }
+
 
             //replace the scores.txt file with the new sorted file
             string scoresFilePath = Path.GetFullPath("scores.txt");
             FileInfo f = new FileInfo(scoresFilePath);
             StreamWriter w = f.CreateText();
 
-            for(int q = 0; q<scores.Length; q++)
+            for(int q = 0; q<scores.Count; q++)
             {
                 w.WriteLine(scores[q].ToString());
                 w.WriteLine(scoreNames[q]);
             }
 
+            w.Close();
+
             //display the file, putting 1st, 2nd and 3rd in the labels at the top and the rest in the listbox
 
             //display 1st
-            goldName.Text = scoreNames[0];
-            goldScore.Text = scores[0].ToString();
+            if(scores.Count > 0)
+            {
+                goldName.Text = scoreNames[0];
+                goldScore.Text = scores[0].ToString();
+            }
+
 
             //display 2nd
-            silverName.Text = scoreNames[1];
-            silverScore.Text = scores[1].ToString();
+            if(scores.Count > 1)
+            {
+                silverName.Text = scoreNames[1];
+                silverScore.Text = scores[1].ToString();
+            }
+
 
             //display 3rd
-            bronzeName.Text = scoreNames[2];
-            bronzeScore.Text = scores[2].ToString();
+            if(scores.Count > 2)
+            {
+                bronzeName.Text = scoreNames[2];
+                bronzeScore.Text = scores[2].ToString();
+            }
+
 
             //display the rest
-            for (int d = 3; d<scores.Length; d++)
+            for (int d = 3; d<scores.Count; d++)
             {
                 //display in the listbox
                 listBox1.Items.Add(scores[d].ToString() + " " + scoreNames[d]);
