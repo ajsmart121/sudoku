@@ -15,15 +15,23 @@ namespace sudoku
 
         public int[,] grid = new int[9, 9];
         public Button[,] btns = new Button[9, 9];
+        public Button[] numbers = new Button[9];
         menu mnu;
         bool closing = false;
-        
+        public int passedtime = 0;
+        public int xcoord = 0;
+        public int ycoord = 0;
+        public int v = 0;
+
+        //create a win condition ?? also let the game work somehow ??
+        //when the game is won then ask the user for their name and save their name and time (in seconds) to the scores file.
 
         public frmgame(int Difficulty)
         {
             InitializeComponent();
+            Pen drawer = new Pen(Color.Navy, 3);
             FillGrid(GenerateSolution(), Difficulty);                   // Create the grid with roughly 30 numbers
-            SwapColumns();
+            GridSwapper();
             for (int x = 0; x < btns.GetLength(0); x++)         // Loop for x
             {
                 for (int y = 0; y < btns.GetLength(1); y++)     // Loop for y
@@ -31,6 +39,7 @@ namespace sudoku
                     btns[x, y] = new Button();
                     btns[x, y].SetBounds((55 * x)+20, (55 * y)+40, 45, 45);
                     btns[x, y].BackColor = Color.PowderBlue;
+                    btns[x, y].Name = x + " " + y;
                     if(grid[x,y] != 0)          // If the grid location isn't empty
                     {
                         btns[x, y].Text = Convert.ToString(grid[x, y]);     // Make the buttons text its value
@@ -43,24 +52,116 @@ namespace sudoku
                     
                     btns[x, y].Click += new EventHandler(this.btnsEvent_Click);
                     Controls.Add(btns[x, y]);
-
-                    
-
                 }
+            }
+
+            for (int i = 0; i< numbers.Length; i++)
+            {
+                numbers[i] = new Button();
+                numbers[i].SetBounds((55 * i) + 20, 530 + 40, 45, 45);
+                numbers[i].BackColor = Color.CornflowerBlue;
+                numbers[i].Text = Convert.ToString(i + 1);
+                numbers[i].Click += new EventHandler(this.numbersEvent_Click);
+                Controls.Add(numbers[i]);
             }
         }
 
-        public void checkUp()
-        {
-
-        }
-
-
-
         void btnsEvent_Click(object sender, EventArgs e)
         {
-            Console.WriteLine(((Button)sender).Text);    // SAME handler as before
+            Button selected = sender as Button;
+
+            Console.WriteLine(selected.Name);
+
+            string[] split = selected.Name.Split(new char[] { ' ' });
+
+            int xcoord = System.Convert.ToInt32(split[0]);
+            int ycoord = System.Convert.ToInt32(split[1]);
+
+            Console.WriteLine(xcoord);
+            Console.WriteLine(ycoord);
+
+            //Console.WriteLine(((Button)sender).Text);    // SAME handler as before
+
+            grid[xcoord, ycoord] = v;
+            btns[xcoord, ycoord].Text = System.Convert.ToString(v);
+            checkValid();
         }
+
+        private void numbersEvent_Click(object sender, EventArgs e)
+        {
+                if (grid[xcoord, ycoord] != 0)
+                {
+                    Button p = (Button)sender;
+                    v = Convert.ToInt32(p.Text);
+                    Console.WriteLine(v);
+                    //btns[xcoord, ycoord].Text = Convert.ToString(v);
+
+                    // btns
+                }
+        }
+
+        //whenevr a number is pressed then check around (square, up, side) and see if its valid
+
+        public void checkValid()
+        {
+            //check if full then check sides and square
+            //take in position of the chosen square and its value
+
+            //temp variables until real ones exist
+            int x = 0;
+            int y = 0;
+            int value = 0;
+            //
+
+            bool valid = false;
+            
+            //take in x coord and value 
+            valid = checkUp(x,value);
+
+            valid = false;
+
+            //take in y coord and value
+            valid = checkSide(y,value);
+
+            valid = false;
+
+            //calculates which square the selected thingy is in
+
+            //take in x and y coords and value
+            valid = checkSquare(x,y,value);
+
+        }
+
+        //take in the value selected and the x coord and check the entire row vertically, if it exists already then make red and hidden value = 11
+        public bool checkUp(int x, int value)
+        {
+            for (int i = 0; i < 9; i++)
+            {
+                if (grid[x,i] == value)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        //
+        public bool checkSquare(int n, int m, int value)
+        {
+            for (int x = 0; x < 3; x++)
+            {
+                for (int y = 0; y < 3; y++)
+                {
+                    if(grid[(n/3)*3  + x, (m/3)* 3 + y] == value)
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+
+        
 
 
         // Find out how many times a value appears in the grid
@@ -92,7 +193,7 @@ namespace sudoku
             for (int i = 0; i < 9; i++)         // For each item in a row
             {
                 int val = rand.Next(1, 10);     // Select a random number
-                while (!checkRow(0, val))      // While that number already exists in the row
+                while (!checkSide(0, val))      // While that number already exists in the row
                 {
                     val = rand.Next(1, 10);     // Choose a different number
                 }
@@ -141,8 +242,8 @@ namespace sudoku
             return tmpGrid;
         }
 
-        // Method to swap around the first grid column with the second
-        void SwapColumns()
+        // Method to randomly swap columns and rows
+        void GridSwapper()
         {
             int temp = 0;
             for(int j = 0; j < 3; j++)
@@ -153,6 +254,49 @@ namespace sudoku
                     grid[3+j, i] = grid[0+j, i];
                     grid[0+j, i] = temp;
                 }
+            }
+
+            Random rand = new Random();
+            for(int i = 0; i <3; i++)
+            {
+                for(int k = 0; k < 2; k++)
+                {
+                    int col = rand.Next(0, 3) + (3 * i);
+                    int col2;
+                    do
+                    {
+                        col2 = rand.Next(0, 3) + (3 * i);
+                    } while (col2 == col);
+
+                    for (int j = 0; j < 9; j++)
+                    {
+                        temp = grid[col, j];
+                        grid[col, j] = grid[col2, j];
+                        grid[col2, j] = temp;
+                    }
+                }
+
+            }
+
+            for (int i = 0; i < 3; i++)
+            {
+                for (int k = 0; k < 2; k++)
+                {
+                    int row = rand.Next(0, 3) + (3 * i);
+                    int row2;
+                    do
+                    {
+                        row2 = rand.Next(0, 3) + (3 * i);
+                    } while (row2 == row);
+
+                    for (int j = 0; j < 9; j++)
+                    {
+                        temp = grid[j, row];
+                        grid[j, row] = grid[j, row2];
+                        grid[j, row2] = temp;
+                    }
+                }
+
             }
 
         }
@@ -207,30 +351,14 @@ namespace sudoku
             mnu = menu1;
         }
 
-        //take in the value selected, and the x coord and check the entire column vertically, if it exists already then make red and hidden value = 11
-        public bool checkColumn(int x, int value)
-        {
-            for (int i = 0; i < 9; i++)
-            {
-                if (grid[x, i] == value)
-                {
-                    btns[x, i].BackColor = Color.Red;
-                    grid[x, i] = 11;
-                    return false;
-                }
-            }
-            return true;
-        }
 
         //take in the value selected, and the y coord and check the entire row horizontally, if it exists already then make red and hidden value = 11
-        public bool checkRow(int y, int value)
+        public bool checkSide(int y, int value)
         {
             for (int i = 0; i < 9; i++)
             {
                 if (grid[i, y] == value)
                 {
-                    btns[i, y].BackColor = Color.Red;
-                    grid[i, y] = 11;
                     return false;
                 }
             }
@@ -239,6 +367,7 @@ namespace sudoku
 
         private void Frmgame_Load(object sender, EventArgs e)
         {
+            timer1.Start();
             this.Closing += Window_Closing;
             this.CenterToScreen();
         }
@@ -262,6 +391,13 @@ namespace sudoku
             {
                 Application.Exit();     // Close the program
             }
+        }
+
+        
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            passedtime++;
+            timerlabel.Text = passedtime.ToString();
         }
     }
 }

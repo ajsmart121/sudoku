@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -37,6 +38,8 @@
             this.Line2 = new System.Windows.Forms.PictureBox();
             this.Line3 = new System.Windows.Forms.PictureBox();
             this.Line4 = new System.Windows.Forms.PictureBox();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.timerlabel = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Line1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Line2)).BeginInit();
@@ -50,7 +53,7 @@
             this.optionsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(697, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(543, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -120,11 +123,27 @@
             this.Line4.TabIndex = 4;
             this.Line4.TabStop = false;
             // 
+            // timer1
+            // 
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // timerlabel
+            // 
+            this.timerlabel.AutoSize = true;
+            this.timerlabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.timerlabel.Location = new System.Drawing.Point(252, 545);
+            this.timerlabel.Name = "timerlabel";
+            this.timerlabel.Size = new System.Drawing.Size(15, 16);
+            this.timerlabel.TabIndex = 5;
+            this.timerlabel.Text = "0";
+            // 
             // frmgame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(697, 651);
+            this.ClientSize = new System.Drawing.Size(543, 651);
+            this.Controls.Add(this.timerlabel);
             this.Controls.Add(this.Line4);
             this.Controls.Add(this.Line3);
             this.Controls.Add(this.Line2);
@@ -156,6 +175,8 @@
         private System.Windows.Forms.PictureBox Line2;
         private System.Windows.Forms.PictureBox Line3;
         private System.Windows.Forms.PictureBox Line4;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Label timerlabel;
     }
 }
 
