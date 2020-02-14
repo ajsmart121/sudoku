@@ -244,11 +244,6 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Label timerlabel;
 
-        private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem menuToolStripMenuItem;
-        private System.Windows.Forms.MenuStrip menuStrip1;
 
     }
 }
