@@ -222,29 +222,18 @@ namespace sudoku
         {
             int full = 0;
 
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 9; i++)
             {
-                for(int j = 0; j < 10; j++)
+                for(int j = 0; j < 9; j++)
                 {
-                    if(grid[i,j] != 0 && grid[i, j] > 9) 
+                    if(grid[i,j] != 0 && grid[i, j] != 11) 
                     {
                         full++;
                     }
                 }
             }
-
             if (full == 81)
             {
-                for (int i = 0; i < 10; i++)
-                {
-                    for (int j = 0; j < 10; j++)
-                    {
-                        if (grid[i, j] == 11)
-                        {
-                            return false;
-                        }
-                    }
-                }
                 return true;
             }
             else
