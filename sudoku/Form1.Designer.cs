@@ -29,24 +29,80 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+
             this.Line1 = new System.Windows.Forms.PictureBox();
             this.Line2 = new System.Windows.Forms.PictureBox();
             this.Line3 = new System.Windows.Forms.PictureBox();
             this.Line4 = new System.Windows.Forms.PictureBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timerlabel = new System.Windows.Forms.Label();
+
+            this.menuStrip1.SuspendLayout();
+
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+
             ((System.ComponentModel.ISupportInitialize)(this.Line1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Line2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Line3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Line4)).BeginInit();
+
+            this.SuspendLayout();
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.optionsToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(543, 24);
+            this.menuStrip1.TabIndex = 0;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // optionsToolStripMenuItem
+            // 
+            this.optionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.aboutToolStripMenuItem,
+            this.helpToolStripMenuItem,
+            this.menuToolStripMenuItem});
+            this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
+            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
+            this.optionsToolStripMenuItem.Text = "Options";
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.aboutToolStripMenuItem.Text = "About";
+            // 
+            // helpToolStripMenuItem
+            // 
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.helpToolStripMenuItem.Text = "Help";
+            this.helpToolStripMenuItem.Click += new System.EventHandler(this.HelpToolStripMenuItem_Click_1);
+            // 
+            // menuToolStripMenuItem
+            // 
+            this.menuToolStripMenuItem.Name = "menuToolStripMenuItem";
+            this.menuToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.menuToolStripMenuItem.Text = "Menu";
+            this.menuToolStripMenuItem.Click += new System.EventHandler(this.MenuToolStripMenuItem_Click);
+            // 
+
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
+
             // Line1
             // 
             this.Line1.BackColor = System.Drawing.Color.Teal;
@@ -98,6 +154,7 @@
             this.timerlabel.TabIndex = 5;
             this.timerlabel.Text = "0";
             // 
+
             // optionsToolStripMenuItem
             // 
             this.optionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -138,6 +195,7 @@
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
+
             // frmgame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -153,29 +211,45 @@
             this.Name = "frmgame";
             this.Text = "Sudoku";
             this.Load += new System.EventHandler(this.Frmgame_Load);
+
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
+
             ((System.ComponentModel.ISupportInitialize)(this.Line1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Line2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Line3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Line4)).EndInit();
+
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
+
+
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem menuToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
+
         private System.Windows.Forms.PictureBox Line1;
         private System.Windows.Forms.PictureBox Line2;
         private System.Windows.Forms.PictureBox Line3;
         private System.Windows.Forms.PictureBox Line4;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Label timerlabel;
+
         private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem menuToolStripMenuItem;
         private System.Windows.Forms.MenuStrip menuStrip1;
+
     }
 }
 
