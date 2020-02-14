@@ -59,5 +59,11 @@ namespace sudoku
         {
             Application.Exit();
         }
+
+        public void NewGame(int difficulty)
+        {
+            game = new frmgame(difficulty);
+            OnStartGame();
+        }
     }
 }
