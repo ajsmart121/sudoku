@@ -112,8 +112,7 @@ namespace sudoku
 
         private void numbersEvent_Click(object sender, EventArgs e)
         {
-            OnWin();
-            //throw new NotImplementedException();
+            throw new NotImplementedException();
             
         }
 
