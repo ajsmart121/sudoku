@@ -38,14 +38,8 @@ namespace sudoku
 
         public frmgame(int Difficulty)
         {
-
-            InitializeComponent();
-            Pen drawer = new Pen(Color.Navy, 3);
-            FillGrid(GenerateSolution(), Difficulty);                   // Create the grid with roughly 30 numbers
-
             diff = Difficulty;
             InitializeComponent();
-            Pen drawer = new Pen(Color.Navy, 3);
             FillGrid(GenerateSolution(), Difficulty);                   // Create the grid with a desired number of locations filled in
 
             GridSwapper();
@@ -164,12 +158,6 @@ namespace sudoku
 
         }
 
-        private void numbersEvent_Click(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-            
-
-        }
 
         //whenevr a number is pressed then check around (square, up, side) and see if its valid
 
@@ -216,10 +204,6 @@ namespace sudoku
             return true;
         }
 
-
-        //
-        public bool checkSquare(int n, int m, int value)
-
         public bool checkSide(int y, int value)
         {
             for (int i = 0; i < 9; i++)
@@ -248,17 +232,6 @@ namespace sudoku
             }
             return true;
         }
-
-
-        void btnsEvent_Click(object sender, EventArgs e)
-        {
-            Console.WriteLine(((Button)sender).Text);    // SAME handler as before
-            if (checkFull() == true)
-            {
-                OnWin();
-            }
-        }
-
 
 
         // Find out how many times a value appears in the grid
@@ -485,22 +458,6 @@ namespace sudoku
         {
             mnu = menu1;
         }
-
-
-
-        //take in the value selected, and the y coord and check the entire row horizontally, if it exists already then make red and hidden value = 11
-        public bool checkSide(int y, int value)
-        {
-            for (int i = 0; i < 9; i++)
-            {
-                if (grid[i, y] == value)
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
-
 
         private void Frmgame_Load(object sender, EventArgs e)
         {
