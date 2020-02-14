@@ -87,7 +87,7 @@ namespace sudoku
 
 
             //sort the scores
-
+            
             for (int i = 0; i < scores.Count; i++) { 
                 for (int j = 0; j < scores.Count - i - 1; j++) { 
                     if (scores[j] > scores[j + 1])
