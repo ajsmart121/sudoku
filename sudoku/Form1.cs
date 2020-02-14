@@ -463,5 +463,11 @@ namespace sudoku
         {
 
         }
+
+        private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult result;
+            result = MessageBox.Show("Sudoku in C# by:\n Michael Olori \n Craig Ritchie 180009196\n AJ Smart", "About", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
     }
 }
