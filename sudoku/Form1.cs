@@ -20,6 +20,7 @@ namespace sudoku
         public int[,] grid = new int[9, 9];
         public Button[,] btns = new Button[9, 9];
         public Button[] numbers = new Button[9];
+
         menu mnu;
         bool closing = false;
         public int passedtime = 0;
@@ -29,12 +30,6 @@ namespace sudoku
         public int v = 0;
 
         public int diff;
-        bool finish = false;
-
-
-
-        //create a win condition ?? also let the game work somehow ??
-        //when the game is won then ask the user for their name and save their name and time (in seconds) to the scores file.
 
         public frmgame(int Difficulty)
         {
@@ -88,22 +83,56 @@ namespace sudoku
 
             string[] split = selected.Name.Split(new char[] { ' ' });
 
-            int xcoord = System.Convert.ToInt32(split[0]);
-            int ycoord = System.Convert.ToInt32(split[1]);
+            xcoord = System.Convert.ToInt32(split[0]);
+            ycoord = System.Convert.ToInt32(split[1]);
 
             Console.WriteLine(xcoord);
             Console.WriteLine(ycoord);
 
-            //Console.WriteLine(((Button)sender).Text);    // SAME handler as before
-
+            if(v > 0)
+            {
+                btns[xcoord, ycoord].Text = System.Convert.ToString(v);
+            }
+            
+            if (!checkValid(xcoord,ycoord) && v > 0)
+            {
+                btns[xcoord, ycoord].BackColor = Color.Red;
+            }
+            else
+            {
+                btns[xcoord, ycoord].BackColor = Color.PowderBlue;
+            }
             grid[xcoord, ycoord] = v;
-            btns[xcoord, ycoord].Text = System.Convert.ToString(v);
-            checkValid();
+            if (checkFull())
+            {
+                OnWin();
+            }
+
+            for(int x = 0; x < 9; x++)
+            {
+                for(int y = 0; y < 9; y++)
+                {
+                    if (btns[x,y].BackColor == Color.Red)
+                    {
+                        v = grid[x, y];
+                        grid[x, y] = 0;
+                        if (!checkValid(x,y) && v > 0)
+                        {
+                            btns[x, y].BackColor = Color.Red;
+                        }
+                        else
+                        {
+                            btns[x, y].BackColor = Color.PowderBlue;
+                        }
+                        grid[x, y] = v;
+                    }
+                }
+            }
         }
 
         private void numbersEvent_Click(object sender, EventArgs e)
         {
-                if (grid[xcoord, ycoord] != 0)
+                if (grid[xcoord, ycoord] >= 0 && grid[xcoord, ycoord] <=9)
                 {
                     Button p = (Button)sender;
                     v = Convert.ToInt32(p.Text);
@@ -161,33 +190,39 @@ namespace sudoku
 
         //whenevr a number is pressed then check around (square, up, side) and see if its valid
 
-        public void checkValid()
+        public bool checkValid(int x, int y)
         {
             //check if full then check sides and square
             //take in position of the chosen square and its value
 
             //temp variables until real ones exist
-            int x = 0;
-            int y = 0;
-            int value = 0;
             //
 
-            bool valid = false;
+            
             
             //take in x coord and value 
-            valid = checkUp(x,value);
+            if (!checkUp(x, v))
+            {
+                return false;
+            }
 
-            valid = false;
+
 
             //take in y coord and value
-            valid = checkSide(y,value);
+            if (!checkSide(y, v))
+            {
+                return false;
+            }
 
-            valid = false;
+            if(!checkSquare(x, y, v))
+            {
+                return false;
+            }
 
             //calculates which square the selected thingy is in
 
             //take in x and y coords and value
-            valid = checkSquare(x,y,value);
+            return true;
 
         }
 
@@ -198,9 +233,11 @@ namespace sudoku
             {
                 if (grid[x,i] == value)
                 {
+                    
                     return false;
                 }
             }
+            
             return true;
         }
 
@@ -265,6 +302,10 @@ namespace sudoku
                 {
                     if(grid[i,j] != 0 && grid[i, j] != 11) 
                     {
+                        if(btns[i,j].BackColor == Color.Red)
+                        {
+                            return false;
+                        }
                         full++;
                     }
                 }
@@ -489,7 +530,7 @@ namespace sudoku
         private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DialogResult result;
-            result = MessageBox.Show("Sudoku in C# by:\n Michael Olori \n Craig Ritchie 180009196\n AJ Smart", "About", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            result = MessageBox.Show("Sudoku in C# by:\n Michael Olori 180010627\n Craig Ritchie 180009196\n AJ Smart 180014563", "About", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
     }
