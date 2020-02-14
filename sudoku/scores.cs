@@ -89,6 +89,7 @@ namespace sudoku
             {
                 if (scores[i] < scores[i + 1])
                 {
+                    scorescounter = 0;
                     string tempString = scoreNames[i];
                     int tempInt = scores[i];
 
