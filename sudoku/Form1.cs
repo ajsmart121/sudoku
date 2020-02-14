@@ -19,6 +19,7 @@ namespace sudoku
         menu mnu;
         bool closing = false;
         public int passedtime = 0;
+        bool finish = false;
 
         //create a win condition ?? also let the game work somehow ??
         //when the game is won then ask the user for their name and save their name and time (in seconds) to the scores file.
@@ -112,8 +113,20 @@ namespace sudoku
             return true;
         }
 
-        //
-        public bool checkSquare(int n, int m, int value)
+        public bool checkSide(int y, int value)
+        {
+            for (int i = 0; i < 9; i++)
+            {
+                if (grid[i, y] == value)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+            //
+            public bool checkSquare(int n, int m, int value)
         {
             for (int x = 0; x < 3; x++)
             {
@@ -131,6 +144,10 @@ namespace sudoku
         void btnsEvent_Click(object sender, EventArgs e)
         {
             Console.WriteLine(((Button)sender).Text);    // SAME handler as before
+            if (checkFull() == true)
+            {
+                OnWin();
+            }
         }
 
 
@@ -151,6 +168,42 @@ namespace sudoku
                 }
             }
             return count;
+        }
+
+        //checks if its full and also if its correct
+        bool checkFull()
+        {
+            int full = 0;
+
+            for (int i = 0; i < 10; i++)
+            {
+                for(int j = 0; j < 10; j++)
+                {
+                    if(grid[i,j] != 0 && grid[i, j] > 9) 
+                    {
+                        full++;
+                    }
+                }
+            }
+
+            if (full == 81)
+            {
+                for (int i = 0; i < 10; i++)
+                {
+                    for (int j = 0; j < 10; j++)
+                    {
+                        if (grid[i, j] == 11)
+                        {
+                            return false;
+                        }
+                    }
+                }
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         // Method to create a complete Sudoku solution
@@ -319,20 +372,6 @@ namespace sudoku
         public void SetMenu(menu menu1)
         {
             mnu = menu1;
-        }
-
-
-        //take in the value selected, and the y coord and check the entire row horizontally, if it exists already then make red and hidden value = 11
-        public bool checkSide(int y, int value)
-        {
-            for (int i = 0; i < 9; i++)
-            {
-                if (grid[i, y] == value)
-                {
-                    return false;
-                }
-            }
-            return true;
         }
 
         private void Frmgame_Load(object sender, EventArgs e)
