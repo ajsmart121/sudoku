@@ -8,6 +8,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using Microsoft.VisualBasic;
+using System.IO;
+
+
 namespace sudoku
 {
     public partial class frmgame : Form
@@ -19,18 +23,31 @@ namespace sudoku
         menu mnu;
         bool closing = false;
         public int passedtime = 0;
+
         public int xcoord = 0;
         public int ycoord = 0;
         public int v = 0;
+
+        public int diff;
+        bool finish = false;
+
+
 
         //create a win condition ?? also let the game work somehow ??
         //when the game is won then ask the user for their name and save their name and time (in seconds) to the scores file.
 
         public frmgame(int Difficulty)
         {
+
             InitializeComponent();
             Pen drawer = new Pen(Color.Navy, 3);
             FillGrid(GenerateSolution(), Difficulty);                   // Create the grid with roughly 30 numbers
+
+            diff = Difficulty;
+            InitializeComponent();
+            Pen drawer = new Pen(Color.Navy, 3);
+            FillGrid(GenerateSolution(), Difficulty);                   // Create the grid with a desired number of locations filled in
+
             GridSwapper();
             for (int x = 0; x < btns.GetLength(0); x++)         // Loop for x
             {
@@ -39,7 +56,9 @@ namespace sudoku
                     btns[x, y] = new Button();
                     btns[x, y].SetBounds((55 * x)+20, (55 * y)+40, 45, 45);
                     btns[x, y].BackColor = Color.PowderBlue;
+
                     btns[x, y].Name = x + " " + y;
+
                     if(grid[x,y] != 0)          // If the grid location isn't empty
                     {
                         btns[x, y].Text = Convert.ToString(grid[x, y]);     // Make the buttons text its value
@@ -64,6 +83,7 @@ namespace sudoku
                 numbers[i].Click += new EventHandler(this.numbersEvent_Click);
                 Controls.Add(numbers[i]);
             }
+
         }
 
         void btnsEvent_Click(object sender, EventArgs e)
@@ -98,6 +118,57 @@ namespace sudoku
 
                     // btns
                 }
+            
+        }
+
+        // Method to be called when the game is completed
+        // Asks the player for their name and then asks if they would like to play again
+        public void OnWin()
+        {
+            timer1.Stop();
+            string name;
+            do
+            {
+                name = Interaction.InputBox("Please enter your name", "You have successfully completed the board!", "", -1, -1);
+            } while (name == "");
+
+            string filePath = Path.GetFullPath("scores.txt");
+            FileInfo f = new FileInfo(filePath);
+            StreamWriter w;
+            if (File.Exists(filePath))
+            {
+                w = File.AppendText(filePath);
+            }
+            else
+            {
+                w = f.CreateText();
+            }
+            w.WriteLine(passedtime.ToString());
+            w.WriteLine(name);
+            w.Close();
+            scores temp = new scores();
+            temp.Close();
+
+            DialogResult dialogResult = MessageBox.Show("Would you like to play again?", "Game Completed!", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                mnu.NewGame(diff);
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+                mnu.Show(); 
+            }
+            closing = true;
+            this.Close();
+            closing = false;
+
+        }
+
+        private void numbersEvent_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+            
+
         }
 
         //whenevr a number is pressed then check around (square, up, side) and see if its valid
@@ -145,8 +216,25 @@ namespace sudoku
             return true;
         }
 
+
         //
         public bool checkSquare(int n, int m, int value)
+
+        public bool checkSide(int y, int value)
+        {
+            for (int i = 0; i < 9; i++)
+            {
+                if (grid[i, y] == value)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+            //
+            public bool checkSquare(int n, int m, int value)
+
         {
             for (int x = 0; x < 3; x++)
             {
@@ -161,7 +249,16 @@ namespace sudoku
             return true;
         }
 
-        
+
+        void btnsEvent_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine(((Button)sender).Text);    // SAME handler as before
+            if (checkFull() == true)
+            {
+                OnWin();
+            }
+        }
+
 
 
         // Find out how many times a value appears in the grid
@@ -182,6 +279,44 @@ namespace sudoku
             }
             return count;
         }
+
+
+        //checks if its full and also if its correct
+        bool checkFull()
+        {
+            int full = 0;
+
+            for (int i = 0; i < 10; i++)
+            {
+                for(int j = 0; j < 10; j++)
+                {
+                    if(grid[i,j] != 0 && grid[i, j] > 9) 
+                    {
+                        full++;
+                    }
+                }
+            }
+
+            if (full == 81)
+            {
+                for (int i = 0; i < 10; i++)
+                {
+                    for (int j = 0; j < 10; j++)
+                    {
+                        if (grid[i, j] == 11)
+                        {
+                            return false;
+                        }
+                    }
+                }
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
 
         // Method to create a complete Sudoku solution
         int[,] GenerateSolution()
@@ -352,6 +487,7 @@ namespace sudoku
         }
 
 
+
         //take in the value selected, and the y coord and check the entire row horizontally, if it exists already then make red and hidden value = 11
         public bool checkSide(int y, int value)
         {
@@ -364,6 +500,7 @@ namespace sudoku
             }
             return true;
         }
+
 
         private void Frmgame_Load(object sender, EventArgs e)
         {
@@ -399,5 +536,11 @@ namespace sudoku
             passedtime++;
             timerlabel.Text = passedtime.ToString();
         }
+
+        private void Label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

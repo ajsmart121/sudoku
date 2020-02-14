@@ -26,7 +26,9 @@ namespace sudoku
 
         private void easyBtn_Click(object sender, EventArgs e)
         {
+
             game = new frmgame(81);
+
             OnStartGame();
         }
 
@@ -42,12 +44,14 @@ namespace sudoku
             OnStartGame();
         }
 
+
         private void OnStartGame()
         {
             game.Show();
             game.SetMenu(this);
             this.Hide();
         }
+
 
         private void LeadBtn_Click(object sender, EventArgs e)
         {
@@ -58,6 +62,14 @@ namespace sudoku
         private void ExitBtn_Click(object sender, EventArgs e)
         {
             Application.Exit();
+
+        }
+
+        public void NewGame(int difficulty)
+        {
+            game = new frmgame(difficulty);
+            OnStartGame();
+
         }
     }
 }
