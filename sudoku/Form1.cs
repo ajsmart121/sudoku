@@ -25,9 +25,6 @@ namespace sudoku
         bool finish = false;
 
 
-        //create a win condition ?? also let the game work somehow ??
-        //when the game is won then ask the user for their name and save their name and time (in seconds) to the scores file.
-
         public frmgame(int Difficulty)
         {
             diff = Difficulty;
@@ -419,6 +416,7 @@ namespace sudoku
             }
         }
 
+        // Set the mnu variable to the instance of the main menu
         public void SetMenu(menu menu1)
         {
             mnu = menu1;
@@ -438,9 +436,10 @@ namespace sudoku
             this.Close();
         }
 
+        // Display information for the help tab
         private void HelpToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            MessageBox.Show("Rules: \n 1. Each row must contain all numbers from 1 to 9 \n 2. Each column must contain all numbers from 1 to 9 \n 3. Each 3x3 box must contain all numbers from 1 to 9\n\nHow to play: \n 1. Select a grid tile\n 2. Select a value to place it within the grid", "Help");
+            MessageBox.Show("Rules: \n 1. Each row must contain all numbers from 1 to 9 \n 2. Each column must contain all numbers from 1 to 9 \n 3. Each 3x3 box must contain all numbers from 1 to 9\n\nHow to play: \n 1. Select a value to place\n 2. Select a location on the grid to place the value", "Help");
         }
 
         // Occurs when the form closes
@@ -459,11 +458,7 @@ namespace sudoku
             timerlabel.Text = passedtime.ToString();
         }
 
-        private void Label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        // Display information for the about option
         private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DialogResult result;
