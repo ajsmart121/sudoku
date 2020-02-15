@@ -56,7 +56,9 @@
             // pictureBox3
             // 
             this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox3.Location = new System.Drawing.Point(49, 118);
+
+            this.pictureBox3.Location = new System.Drawing.Point(377, 105);
+
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(80, 114);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -79,32 +81,36 @@
             this.goldName.AutoSize = true;
             this.goldName.Location = new System.Drawing.Point(235, 184);
             this.goldName.Name = "goldName";
-            this.goldName.Size = new System.Drawing.Size(35, 13);
+
+            this.goldName.Size = new System.Drawing.Size(0, 13);
             this.goldName.TabIndex = 4;
-            this.goldName.Text = "label1";
+
             // 
             // silverName
             // 
             this.silverName.AutoSize = true;
             this.silverName.Location = new System.Drawing.Point(72, 244);
             this.silverName.Name = "silverName";
-            this.silverName.Size = new System.Drawing.Size(35, 13);
+
+            this.silverName.Size = new System.Drawing.Size(0, 13);
             this.silverName.TabIndex = 5;
-            this.silverName.Text = "label2";
+
             // 
             // bronzeName
             // 
             this.bronzeName.AutoSize = true;
             this.bronzeName.Location = new System.Drawing.Point(401, 246);
             this.bronzeName.Name = "bronzeName";
-            this.bronzeName.Size = new System.Drawing.Size(35, 13);
+
+            this.bronzeName.Size = new System.Drawing.Size(0, 13);
             this.bronzeName.TabIndex = 6;
-            this.bronzeName.Text = "label3";
             // 
             // pictureBox2
             // 
             this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox2.Location = new System.Drawing.Point(377, 118);
+
+            this.pictureBox2.Location = new System.Drawing.Point(49, 105);
+
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(80, 114);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -116,27 +122,30 @@
             this.goldScore.AutoSize = true;
             this.goldScore.Location = new System.Drawing.Point(235, 206);
             this.goldScore.Name = "goldScore";
-            this.goldScore.Size = new System.Drawing.Size(35, 13);
+
+            this.goldScore.Size = new System.Drawing.Size(0, 13);
             this.goldScore.TabIndex = 8;
-            this.goldScore.Text = "label1";
+
             // 
             // silverScore
             // 
             this.silverScore.AutoSize = true;
             this.silverScore.Location = new System.Drawing.Point(72, 266);
             this.silverScore.Name = "silverScore";
-            this.silverScore.Size = new System.Drawing.Size(35, 13);
+
+            this.silverScore.Size = new System.Drawing.Size(0, 13);
             this.silverScore.TabIndex = 9;
-            this.silverScore.Text = "label1";
+
             // 
             // bronzeScore
             // 
             this.bronzeScore.AutoSize = true;
             this.bronzeScore.Location = new System.Drawing.Point(401, 266);
             this.bronzeScore.Name = "bronzeScore";
-            this.bronzeScore.Size = new System.Drawing.Size(35, 13);
+
+            this.bronzeScore.Size = new System.Drawing.Size(0, 13);
             this.bronzeScore.TabIndex = 10;
-            this.bronzeScore.Text = "label1";
+
             // 
             // scores
             // 
